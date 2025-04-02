@@ -1,30 +1,30 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Agregar esta línea para exportar como sitio estático
-
+  output: "export", // Exporta como sitio estático si es necesario
   images: {
-    domains: ["images.unsplash.com"],
-    unoptimized: true, // Necesario si usas <Image> de Next.js en export estático
+    domains: ["images.unsplash.com"], // Permite imágenes externas
+    unoptimized: true, // Necesario para export estático si usas <Image>
   },
+
   webpack(config) {
-    
-    // Grab the existing rule that handles SVG imports
+    // Regla para archivos SVG
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg")
     );
 
     config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
       {
         ...fileLoaderRule,
         test: /\.svg$/i,
         resourceQuery: /url/, // *.svg?url
       },
-      // Convert all other *.svg imports to React components
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+        resourceQuery: { not: [...(fileLoaderRule.resourceQuery?.not || []), /url/] },
         use: {
           loader: "@svgr/webpack",
           options: {
@@ -44,13 +44,12 @@ const nextConfig = {
         },
       }
     );
-    
 
-    // Modify the file loader rule to ignore *.svg, since we have it handled now.
+    // Excluimos *.svg de la regla original del cargador de archivos
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },
 };
-
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

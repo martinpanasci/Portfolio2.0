@@ -1,3 +1,4 @@
+
 import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
 import { ProjectsRecent } from "@/sections/ProjectsRecent";
@@ -8,9 +9,10 @@ import { ContactSection } from "@/sections/Contact";
 import { Footer } from "@/sections/Footer";
 
 export default function Home() {
+  
   return (
     <div>
-      <Header />
+      <Header />      
       <HeroSection />
       <ProjectsRecent />
       <TapeSection />

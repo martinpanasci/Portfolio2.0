@@ -2,20 +2,22 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@lib/utils";
-import Link from "next/link";
+
 
 export const PinContainer = ({
   children,
-  title,
-  href,
+  title,  
   className,
   containerClassName,
+  onOpenModal,  // Nueva prop para manejar la apertura del modal
+  modalData,    // Datos que se pasarán al modal
 }: {
   children: React.ReactNode;
-  title?: string;
-  href?: string;
+  title?: string;  
   className?: string;
   containerClassName?: string;
+  onOpenModal: (data: any) => void;  // Función para abrir el modal
+  modalData: any;  // Información específica para el modal
 }) => {
   const [transform, setTransform] = useState(
     "translate(-50%,-50%) rotateX(0deg)"
@@ -28,17 +30,19 @@ export const PinContainer = ({
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
+  const handleClick = () => {
+    onOpenModal(modalData);  // Llama a la función para abrir el modal con los datos
+  };
+
   return (
-    <Link
+    <div
       className={cn(
         "relative group/pin z-40  cursor-pointer ",
         containerClassName
       )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      href={href || ""}
-      target="_blank"
-      rel="noopener noreferrer"
+      onClick={handleClick}  // Aquí llamamos a la función cuando se hace click
     >
       <div
         style={{
@@ -57,8 +61,8 @@ export const PinContainer = ({
           <div className={cn(" relative z-40 ", className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} />
-    </Link>
+      <PinPerspective title={title} />
+    </div>
   );
 };
 
@@ -79,7 +83,7 @@ export const PinPerspective = ({
             target={"_blank"}
             className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 "
           >
-            <span className="relative z-20 text-white text-xs font-bold inline-block py-0.5">
+            <span className="relative z-20 text-white text-xs font-bold inline-block py-2 px-4">
               {title}
             </span>
 
