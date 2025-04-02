@@ -6,8 +6,10 @@ import StarIcon from "@/assets/icons/star.svg";
 import Image from "next/image";
 import { HeroOrbit } from "@/components/HeroOrbit";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
+import { useTranslations } from "next-intl";
 
 export const HeroSection = () => { 
+  const t = useTranslations("Hero");
 
   return (
     <div id="home" className="py-32 relative z-0  overflow-x-clip">
@@ -61,25 +63,20 @@ export const HeroSection = () => {
 
       <div className="container">
         <div className="flex flex-col items-center">
-          <Image src={yo} alt="Memoji of me sitting at a computer"
+          <Image src={yo} alt={t("alt")}
             className="h-[250px] md:h-[350px] w-auto" />
           <div className="bg-gray-950 border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg md:w-80 md:justify-center">
             <div className="bg-green-500 size-2.5 rounded-full relative ">
               <div className="bg-green-500 absolute inset-0 rounded-full animate-ping-large "></div>
             </div>
-            <div className="text-sm font-semibold">Available for new Projects</div>
+            <div className="text-sm font-semibold">{t("available")}</div>
           </div>
         </div>
         <div className="max-w-4xl mx-auto">
           <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide">
             Martin Panasci<br /><span className="bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">Full Stack</span> Developer
           </h1>
-          <p className="mt-4 text-center text-white/60 md:text-lg">
-            I have a preference for backend development, specializing in building scalable APIs and managing complex databases. 
-            My goal is to grow into a Senior Backend Developer or Software Architect. Although my focus is on backend, I have solid experience 
-            with frontend technologies as many of my clients often request static websites or landing pages. In addition to this, I excel in 
-            collaborative environments where I can apply my leadership and communication skills to achieve the goals we have.
-          </p>
+          <p className="mt-4 text-center text-white/60 md:text-lg"> {t("description")} </p>
         </div>
         <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
           <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl cursor-pointer z-10"
@@ -90,7 +87,7 @@ export const HeroSection = () => {
               }
             }}
           >
-            <span className="font-semibold">Explore My Work</span>
+            <span className="font-semibold">{t("explore")}</span>
             <ArrowDown className="size-4" />
           </button>
           <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl cursor-pointer z-10"
@@ -102,7 +99,7 @@ export const HeroSection = () => {
             }}
           >
             <span>👋</span>
-            <span className="font-semibold">Let&apos;s Connect</span>
+            <span className="font-semibold">{t("connect")}</span>
           </button>
         </div>
       </div>
