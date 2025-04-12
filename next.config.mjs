@@ -1,9 +1,6 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // Exporta como sitio estático si es necesario
+  //output: "export", // Exporta como sitio estático si es necesario
   images: {
     domains: ["images.unsplash.com"], // Permite imágenes externas
     unoptimized: true, // Necesario para export estático si usas <Image>
@@ -51,5 +48,5 @@ const nextConfig = {
     return config;
   },
 };
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+
+export default nextConfig;

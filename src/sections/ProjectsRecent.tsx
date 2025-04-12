@@ -1,23 +1,25 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
 import { PinContainer } from "@/components/ui/3d-pin";
 import { Modal } from "@/components/Modal";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const ProjectsRecent = () => {
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const t = useTranslations("Projects");
-  const tProjects = useTranslations("Projects.items");
+
+  const { t } = useLanguage();
+  const tp = (key: string) => t(`Projects.items.${key}`);
+  const tpr = (key: string) => t(`Projects.items.${key}`);
 
   const projects = [
     {
       id: 1,
-      title: tProjects("project1.title"),
-      description: tProjects("project1.description"),
-      des: tProjects.raw("project1.des"),
+      title: tp("project1.title"),
+      description: tp("project1.description"),
+      des: tp("project1.des"),
       img: "https://i.imgur.com/DxOcN79.png",
       iconLists: [
         { icon: "/react.svg", iconName: "React" },
@@ -30,9 +32,9 @@ export const ProjectsRecent = () => {
     },
     {
       id: 2,
-      title: tProjects("project2.title"),
-      description: tProjects("project2.description"),
-      des: tProjects.raw("project2.des"),
+      title: tp("project2.title"),
+      description: tp("project2.description"),
+      des: tp("project2.des"),
       img: "https://i.imgur.com/voAcyGw.png",
       iconLists: [
         { icon: "/react.svg", iconName: "React" },
@@ -44,9 +46,9 @@ export const ProjectsRecent = () => {
     },
     {
       id: 3,
-      title: tProjects("project3.title"),
-      description: tProjects("project3.description"),
-      des: tProjects.raw("project3.des"),
+      title: tp("project3.title"),
+      description: tp("project3.description"),
+      des: tp("project3.des"),
       img: "https://i.imgur.com/U3yQrl3.png",
       iconLists: [
         { icon: "/react.svg", iconName: "React" },
@@ -58,9 +60,9 @@ export const ProjectsRecent = () => {
     },
     {
       id: 4,
-      title: tProjects("project4.title"),
-      description: tProjects("project4.description"),
-      des: tProjects.raw("project4.des"),
+      title: tp("project4.title"),
+      description: tp("project4.description"),
+      des: tp("project4.des"),
       img: "https://i.imgur.com/CxRRcyq.png",
       iconLists: [
         { icon: "/nextjs.svg", iconName: "Next.js" },
@@ -71,9 +73,9 @@ export const ProjectsRecent = () => {
     },
     {
       id: 5,
-      title: tProjects("project5.title"),
-      description: tProjects("project5.description"),
-      des: tProjects.raw("project5.des"),
+      title: tp("project5.title"),
+      description: tp("project5.description"),
+      des: tp("project5.des"),
       img: "https://i.imgur.com/DZqeKZU.png",
       iconLists: [
         { icon: "/nextjs.svg", iconName: "Next.js" },
@@ -105,16 +107,17 @@ export const ProjectsRecent = () => {
       <div className="mx-auto max-w-[375px] md:max-w-[880px] lg:max-w-[1400px]">
         <div className="flex justify-center">
           <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-            {t("label")}
+            {t("Projects.label")}
           </p>
         </div>
-        <h2 className="font-serif text-3xl lg:text-5xl text-center mt-6 ">
-          {t("title.part1")}{" "}
+        <h2 className="font-serif text-3xl lg:text-5xl text-center mt-6">
+          {t("Projects.title.part1")}{" "}
           <span className="bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-            {t("title.part2")}
+            {t("Projects.title.part2")}
           </span>
         </h2>
-        <p className="text-center text-white/60 mt-4">{t("subtitle")}</p>
+        <p className="text-center text-white/60 mt-4">{t("Projects.subtitle")}</p>
+
         <div className="flex flex-wrap items-center justify-center p-4 gap-12 mt-10">
           {projects.map(({ id, title, description, des, img, iconLists, link }) => (
             <div
@@ -152,7 +155,7 @@ export const ProjectsRecent = () => {
                   </div>
                   <div className="flex justify-center items-center">
                     <p className="flex lg:text-xl md:text-xs text-sm text-emerald-300 border border-emerald-300 rounded-xl px-1 py-1 whitespace-nowrap">
-                      {t("viewMore")}
+                      {t("Projects.viewMore")}
                     </p>
                   </div>
                 </div>

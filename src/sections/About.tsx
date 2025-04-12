@@ -1,5 +1,5 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useLanguage } from "@/context/LanguageContext";
 import { Card } from "@/components/Card";
 import { TechIcon } from "@/components/TechIcon";
 import Image from "next/image";
@@ -35,22 +35,19 @@ const toolboxItems = [
   { title: "Github", iconType: GithubIcon },
 ];
 
-
-
 export const AboutSection = () => {
-  const t = useTranslations("About");
-  const th = useTranslations("About.hobbies");
+  const { t } = useLanguage();
   const ref = useRef(null);
 
   const hobbies = [
-    { title: th("football"), emoji: "⚽", left: "5%", top: "5%" },
-    { title: th("gaming"), emoji: "🎮", left: "50%", top: "15%" },
-    { title: th("hiking"), emoji: "🥾", left: "10%", top: "35%" },
-    { title: th("coaching"), emoji: "💪", left: "55%", top: "60%" },
-    { title: th("fitness"), emoji: "🏋️‍♀️", left: "70%", top: "35%" },
-    { title: th("crypto"), emoji: "💰", left: "15%", top: "65%" },
-    { title: th("trading"), emoji: "📈", left: "35%", top: "25%" },
-    { title: th("bike"), emoji: "🚴‍♀️", left: "75%", top: "0%" },
+    { title: t("About.hobbies.football"), emoji: "⚽", left: "5%", top: "5%" },
+    { title: t("About.hobbies.gaming"), emoji: "🎮", left: "50%", top: "15%" },
+    { title: t("About.hobbies.hiking"), emoji: "🥾", left: "10%", top: "35%" },
+    { title: t("About.hobbies.coaching"), emoji: "💪", left: "55%", top: "60%" },
+    { title: t("About.hobbies.fitness"), emoji: "🏋️‍♀️", left: "70%", top: "35%" },
+    { title: t("About.hobbies.crypto"), emoji: "💰", left: "15%", top: "65%" },
+    { title: t("About.hobbies.trading"), emoji: "📈", left: "35%", top: "25%" },
+    { title: t("About.hobbies.bike"), emoji: "🚴‍♀️", left: "75%", top: "0%" },
   ];
 
   return (
@@ -58,48 +55,46 @@ export const AboutSection = () => {
       <div className="container">
         <div className="flex justify-center">
           <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-            {t("label")}
+            {t("About.label")}
           </p>
         </div>
         <h2 className="font-serif text-3xl text-center mt-6 lg:text-5xl">
-          {t("title.part1")}{" "}
+          {t("About.title.part1")}{" "}
           <span className="bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-            {t("title.part2")}
+            {t("About.title.part2")}
           </span>
         </h2>
-        <p className="text-center text-white/60 mt-4">{t("subtitle")}</p>
+        <p className="text-center text-white/60 mt-4">{t("About.subtitle")}</p>
 
         <div className="mt-20 flex flex-col gap-6">
           <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-3 gap-8">
-            {/* My Reads */}
             <Card className="h-[320px] md:col-span-2 lg:col-span-1">
               <div className="flex flex-col">
                 <div className="inline-flex items-center gap-2">
                   <StarIcon className="size-9 text-emerald-300" />
-                  <h3 className="font-serif text-3xl">{t("reads.title")}</h3>
+                  <h3 className="font-serif text-3xl">{t("About.reads.title")}</h3>
                 </div>
-                <p className="text-sm text-white/60 mt-2">{t("reads.text")}</p>
+                <p className="text-sm text-white/60 mt-2">{t("About.reads.text")}</p>
               </div>
               <div className="w-40 mx-auto mt-8">
                 <Image src={bookImage} alt="book cover" />
               </div>
             </Card>
 
-            {/* My Toolbox */}
             <Card className="h-auto p-0 md:col-span-3 lg:col-span-2">
               <div className="flex flex-col px-6 pt-6">
                 <div className="inline-flex items-center gap-2">
                   <StarIcon className="size-9 text-emerald-300" />
-                  <h3 className="font-serif text-3xl">{t("toolbox.title")}</h3>
+                  <h3 className="font-serif text-3xl">{t("About.toolbox.title")}</h3>
                 </div>
-                <p className="text-sm text-white/60 mt-2">{t("toolbox.text")}</p>
+                <p className="text-sm text-white/60 mt-2">{t("About.toolbox.text")}</p>
               </div>
               <div className="flex ml-6 my-6">
                 <div className="flex flex-wrap py-0.5 gap-6">
                   {toolboxItems.map(item => (
                     <div key={item.title} className="inline-flex items-center gap-4 py-2 px-3 outline outline-2 outline-white/10 rounded-lg">
                       <TechIcon component={item.iconType} />
-                      <span className="font-semibold ">{item.title}</span>
+                      <span className="font-semibold">{item.title}</span>
                     </div>
                   ))}
                 </div>
@@ -108,14 +103,13 @@ export const AboutSection = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {/* Beyond the Code */}
             <Card className="h-[320px] p-0 flex flex-col col-span-3">
               <div className="flex flex-col px-6 py-6">
                 <div className="inline-flex items-center gap-2">
                   <StarIcon className="size-9 text-emerald-300" />
-                  <h3 className="font-serif text-3xl">{t("beyond.title")}</h3>
+                  <h3 className="font-serif text-3xl">{t("About.beyond.title")}</h3>
                 </div>
-                <p className="text-sm text-white/60 mt-2">{t("beyond.text")}</p>
+                <p className="text-sm text-white/60 mt-2">{t("About.beyond.text")}</p>
               </div>
               <div className="relative flex-1" ref={ref}>
                 {hobbies.map(hobby => (
@@ -126,13 +120,14 @@ export const AboutSection = () => {
                     drag
                     dragConstraints={ref}
                   >
-                    <span className="font-medium text-gray-950">{hobby.emoji} {hobby.title}</span>
+                    <span className="font-medium text-gray-950">
+                      {hobby.emoji} {hobby.title}
+                    </span>
                   </motion.div>
                 ))}
               </div>
             </Card>
 
-            {/* Location */}
             <Card className="h-[320px] p-0 relative col-span-2">
               <Image src={mapImage} alt="map" className="h-full w-full object-cover object-left-top" />
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:absolute after:inset-0 after:outline-2 after:-outline-offset-2 after:rounded-full after:outline-gray-950/30">

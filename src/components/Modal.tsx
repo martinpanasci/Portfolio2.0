@@ -1,9 +1,9 @@
 "use client";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
-import { useTranslations } from "next-intl";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Modal = ({ onClose, data }: { onClose: () => void; data: any }) => {
-  const t = useTranslations("Modal");
+  const { t } = useLanguage(); // Obtenemos traducciones manualmente
 
   return (
     <div className="fixed inset-0 bg-black/75 flex items-center justify-center z-50 overflow-y-auto">
@@ -58,12 +58,12 @@ export const Modal = ({ onClose, data }: { onClose: () => void; data: any }) => 
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-center bg-black text-white py-3 px-6 rounded-xl gap-2 w-max"
               >
-                {t("visit")}
+                {t("Modal.visit")}
                 <ArrowUpRightIcon className="size-5" />
               </a>
             </div>
           ) : (
-            <p className="text-center text-gray-500">{t("noLink")}</p>
+            <p className="text-center text-gray-500">{t("Modal.noLink")}</p>
           )}
         </div>
       </div>

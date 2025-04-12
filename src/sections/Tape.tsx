@@ -1,10 +1,10 @@
 "use client";
-import { useTranslations } from "next-intl";
 import StarIcon from "@/assets/icons/star.svg";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const TapeSection = () => {
-  const t = useTranslations("Tape");
-  const words = t.raw("words") as string[];
+  const { t } = useLanguage();
+  const words = t("Tape.words") as unknown as string[];
 
   return (
     <div className="py-16 overflow-x-clip ">

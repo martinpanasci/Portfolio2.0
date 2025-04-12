@@ -2,10 +2,10 @@
 import React from "react";
 import { Boxes } from "@/components/ui/background-boxes";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
-import { useTranslations } from "next-intl";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const ContactSection = () => {
-  const t = useTranslations("Contact");
+  const { t } = useLanguage();
 
   return (
     <div id="contact" className="py-16 lg:py-24 pt-14 lg:pt-20">
@@ -32,10 +32,10 @@ export const ContactSection = () => {
               <div>
                 <h2
                   className="font-serif text-2xl md:text-3xl relative z-20"
-                  dangerouslySetInnerHTML={{ __html: t("title") }}
+                  dangerouslySetInnerHTML={{ __html: t("Contact.title") }}
                 />
                 <p className="text-sm mt-2 md:text-base relative z-20">
-                  {t("subtitle")}
+                  {t("Contact.subtitle")}
                 </p>
               </div>
               <div>
@@ -45,7 +45,7 @@ export const ContactSection = () => {
                   rel="noopener noreferrer"
                 >
                   <button className="inline-flex items-center text-white bg-gray-900 px-6 h-12 rounded-xl gap-2 w-max relative z-20">
-                    <span className="font-semibold">{t("button")}</span>
+                    <span className="font-semibold">{t("Contact.button")}</span>
                     <ArrowUpRightIcon className="size-5" />
                   </button>
                 </a>

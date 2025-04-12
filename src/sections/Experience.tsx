@@ -1,26 +1,26 @@
 "use client";
 import { Button } from "@/components/ui/moving-border";
-import { useTranslations } from "next-intl";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Experience = () => {
-  const t = useTranslations("Experience");
+  const { t } = useLanguage();
 
   return (
     <div id="experience" className="py-24">
       <div className="container">
         <div className="flex justify-center">
           <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-            {t("label")}
+            {t("Experience.label")}
           </p>
         </div>
         <h2 className="font-serif text-3xl text-center mt-6 lg:text-5xl">
-          {t("title.part1")}{" "}
+          {t("Experience.title.part1")}{" "}
           <span className="bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-            {t("title.part2")}
+            {t("Experience.title.part2")}
           </span>
         </h2>
         <p className="text-center text-white/60 mt-4">
-          {t("subtitle")}
+          {t("Experience.subtitle")}
         </p>
 
         <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
@@ -34,17 +34,21 @@ export const Experience = () => {
               <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
                 <img
                   src={card.thumbnail}
-                  alt={card.thumbnail}
+                  alt={`thumbnail-${card.id}`}
                   className="lg:w-32 md:w-20 w-16"
                 />
                 <div className="lg:ms-5">
                   <h3
                     className="text-start text-xl md:text-2xl font-bold"
-                    dangerouslySetInnerHTML={{ __html: t(`items.${card.id}.title`) }}
+                    dangerouslySetInnerHTML={{
+                      __html: t(`Experience.items.${card.id}.title`),
+                    }}
                   ></h3>
                   <p
                     className="text-start text-white-100 mt-3 font-semibold"
-                    dangerouslySetInnerHTML={{ __html: t(`items.${card.id}.desc`) }}
+                    dangerouslySetInnerHTML={{
+                      __html: t(`Experience.items.${card.id}.desc`),
+                    }}
                   />
                 </div>
               </div>

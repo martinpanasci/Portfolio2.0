@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
-import { useTranslations } from "next-intl";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Footer = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
-  const t = useTranslations("Footer");
+  const {t} = useLanguage();
 
   const handleCopy = (text: string, setCopied: React.Dispatch<React.SetStateAction<boolean>>) => {
     navigator.clipboard.writeText(text);
@@ -21,11 +21,11 @@ export const Footer = () => {
 
       <div className="container">
         <div className="border-t border-white/15 py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8">
-          <div className="text-white/40">&copy; 2025. MPanasci {t("rights")}</div>
+          <div className="text-white/40">&copy; 2025. MPanasci {t("footer.rights")}</div>
 
           <nav className="flex flex-col md:flex-row items-center gap-8 pointer-events-auto">
             <a href="https://mpanasci.com/cv.pdf" className="inline-flex items-center gap-1.5 ">
-              <span className="font-semibold">{t("cv")}</span>
+              <span className="font-semibold">{t("footer.cv")}</span>
               <ArrowUpRightIcon className="size-4" />
             </a>
             <div className="relative inline-flex items-center gap-1.5">
@@ -33,7 +33,7 @@ export const Footer = () => {
                 onClick={(e) => { e.preventDefault(); handleCopy("mpanasci95@gmail.com", setCopiedEmail); }}
                 className="inline-flex items-center gap-1.5 cursor-pointer"
               >
-                {t("email")}
+                {t("footer.email")}
               </button>
               {copiedEmail && <span className="tooltip-bottom tooltip-visible">{t("copiedEmail")}</span>}
               <ArrowUpRightIcon className="size-4" />
@@ -42,9 +42,9 @@ export const Footer = () => {
               <button 
                 onClick={(e) => { e.preventDefault(); handleCopy("+5492235972102", setCopiedPhone); }} 
                 className="inline-flex items-center gap-1.5 cursor-pointer">
-                {t("phone")}
+                {t("footer.phone")}
               </button>
-              {copiedPhone && <span className="tooltip-bottom tooltip-visible">{t("copiedPhone")}</span>}
+              {copiedPhone && <span className="tooltip-bottom tooltip-visible">{t("footer.copiedPhone")}</span>}
               <ArrowUpRightIcon className="size-4" />
             </div>
             <a href="https://github.com/martinpanasci" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5">
