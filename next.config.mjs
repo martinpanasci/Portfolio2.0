@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  //output: "export", // Exporta como sitio estático si es necesario
   images: {
-    domains: ["images.unsplash.com"], // Permite imágenes externas
-    unoptimized: true, // Necesario para export estático si usas <Image>
+    domains: ["images.unsplash.com"],
+    unoptimized: true, // necesario para export o sin optimización de imágenes en prod
   },
 
   webpack(config) {
@@ -21,7 +20,9 @@ const nextConfig = {
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...(fileLoaderRule.resourceQuery?.not || []), /url/] },
+        resourceQuery: {
+          not: [...(fileLoaderRule.resourceQuery?.not || []), /url/],
+        },
         use: {
           loader: "@svgr/webpack",
           options: {
@@ -42,7 +43,6 @@ const nextConfig = {
       }
     );
 
-    // Excluimos *.svg de la regla original del cargador de archivos
     fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
